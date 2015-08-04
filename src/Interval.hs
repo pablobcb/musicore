@@ -24,7 +24,8 @@ module Interval
 , majorThirteenth
 ) where
 
--- | Intervals
+import Note
+
 type Interval = Int -- measured in semitones
 
 minorSecond :: Interval
@@ -92,3 +93,6 @@ minorThirteenth = minorSixth
 
 majorThirteenth :: Interval
 majorThirteenth = majorSixth
+
+getInterval :: Note -> Interval -> Note
+getInterval note 0 = note
