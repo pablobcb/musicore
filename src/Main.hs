@@ -8,5 +8,5 @@ import Note
 -- | The main entry point.
 main :: IO ()
 main = do
-    print $ resolveAscendingInterval 3 C
-    print $ resolveDescendingInterval 3 C
+    print $ resolveInterval Ascending 3 C
+    print $ resolveInterval Descending 3 C

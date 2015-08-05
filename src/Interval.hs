@@ -1,7 +1,7 @@
 module Interval
 ( Interval
-, resolveAscendingInterval
-, resolveDescendingInterval
+, Direction (..)
+, resolveInterval
 , minorSecond
 , majorSecond
 , minorThird
@@ -29,6 +29,8 @@ module Interval
 import Note
 
 type Interval = Int -- measured in semitones
+
+data Direction = Ascending | Descending
 
 minorSecond :: Interval
 minorSecond = 1
@@ -96,10 +98,8 @@ minorThirteenth = minorSixth
 majorThirteenth :: Interval
 majorThirteenth = majorSixth
 
-resolveAscendingInterval :: Interval -> Note -> Note
-resolveAscendingInterval 0 note = note
-resolveAscendingInterval interval note = resolveAscendingInterval (interval -1) (next note)
-
-resolveDescendingInterval :: Interval -> Note -> Note
-resolveDescendingInterval 0 note = note
-resolveDescendingInterval interval note = resolveDescendingInterval (interval -1) (previous note)
+resolveInterval :: Direction -> Interval -> Note -> Note
+resolveInterval _ 0 note = note
+resolveInterval direction interval note = resolveInterval
+      direction (interval -1) $ (case direction of Ascending  -> next
+                                                   Descending -> previous) note
