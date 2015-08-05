@@ -3,11 +3,10 @@ module Main where
 
 import Interval
 import Note
--- | Notes
-
 
 
 -- | The main entry point.
 main :: IO ()
 main = do
-    print minorThird
+    print $ resolveAscendingInterval 3 C
+    print $ resolveDescendingInterval 3 C

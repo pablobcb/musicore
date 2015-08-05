@@ -1,5 +1,7 @@
 module Interval
 ( Interval
+, resolveAscendingInterval
+, resolveDescendingInterval
 , minorSecond
 , majorSecond
 , minorThird
@@ -94,5 +96,10 @@ minorThirteenth = minorSixth
 majorThirteenth :: Interval
 majorThirteenth = majorSixth
 
-getInterval :: Note -> Interval -> Note
-getInterval note 0 = note
+resolveAscendingInterval :: Interval -> Note -> Note
+resolveAscendingInterval 0 note = note
+resolveAscendingInterval interval note = resolveAscendingInterval (interval -1) (next note)
+
+resolveDescendingInterval :: Interval -> Note -> Note
+resolveDescendingInterval 0 note = note
+resolveDescendingInterval interval note = resolveDescendingInterval (interval -1) (previous note)

@@ -1,5 +1,5 @@
 module Note
-( Note
+( Note (..)
 , next
 , previous
 ) where
