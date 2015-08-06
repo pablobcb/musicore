@@ -9,5 +9,5 @@ import Scale
 -- | The main entry point.
 main :: IO ()
 main = do
-    mapM print $ createMinorScale C
+    print $ minorScale C
     return ()

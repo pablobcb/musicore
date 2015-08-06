@@ -104,6 +104,8 @@ resolveInterval note _ 0 = note
 resolveInterval note direction interval =
       resolveInterval note' direction interval'
         where
-          note' = (case direction of Ascending  -> next
-                                     Descending -> previous) note
+          note' = (case direction of
+              Ascending  -> next
+              Descending -> previous) note
+
           interval' = interval - 1
