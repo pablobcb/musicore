@@ -3,10 +3,11 @@ module Main where
 
 import Interval
 import Note
+import Scale
 
 
 -- | The main entry point.
 main :: IO ()
 main = do
-    print $ resolveInterval Ascending 3 C
-    print $ resolveInterval Descending 3 C
+    mapM print $ createMinorScale C
+    return ()

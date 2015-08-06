@@ -98,8 +98,12 @@ minorThirteenth = minorSixth
 majorThirteenth :: Interval
 majorThirteenth = majorSixth
 
-resolveInterval :: Direction -> Interval -> Note -> Note
-resolveInterval _ 0 note = note
-resolveInterval direction interval note = resolveInterval
-      direction (interval -1) $ (case direction of Ascending  -> next
-                                                   Descending -> previous) note
+resolveInterval :: Note -> Direction -> Interval -> Note
+resolveInterval note _ 0 = note
+
+resolveInterval note direction interval =
+      resolveInterval note' direction interval'
+        where
+          note' = (case direction of Ascending  -> next
+                                     Descending -> previous) note
+          interval' = interval - 1
