@@ -1,7 +1,7 @@
 module Scale
 ( Scale
 , Degree
-, createScale
+, makeScale
 , ionianScale
 , dorianScale
 , phrygianScale
@@ -21,21 +21,26 @@ type Degree = Int
 
 type Mode = Int
 
-createScale :: [Interval] -> Note -> Scale
-createScale intervals root =
+makeScale :: [Interval] -> Note -> Scale
+makeScale intervals root =
   root : map (resolveInterval root Ascending) intervals
 
+--chromaticScale :: Note -> Scale
+--chromaticScale root = makeScale
 
 makeMode :: Mode -> Note -> Scale
 makeMode mode root =
-  take 7 $ drop (mode -1) $ cycle $ createScale
-    [ majorSecond
-    , majorThird
-    , perfectFourth
-    , perfectFifth
-    , majorSixth
-    , majorSeventh
-    ] root
+  take (length scale) $ drop (mode -1) $ cycle scale
+  where
+    scale = makeScale
+        [ majorSecond
+        , majorThird
+        , perfectFourth
+        , perfectFifth
+        , majorSixth
+        , majorSeventh
+        ] root
+
 
 ionianScale :: Note -> Scale
 ionianScale = makeMode 1
