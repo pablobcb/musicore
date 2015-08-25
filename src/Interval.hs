@@ -24,6 +24,7 @@ module Interval
 , augmentedEleventh
 , minorThirteenth
 , majorThirteenth
+, i, ii, iii, iv, v, vi, vii
 ) where
 
 import Note
@@ -109,3 +110,24 @@ resolveInterval note direction interval =
               Descending -> previous) note
 
           interval' = interval - 1
+
+i :: Int
+i = 1
+
+ii :: Int
+ii = 2
+
+iii :: Int
+iii = 3
+
+iv :: Int
+iv = 4
+
+v :: Int
+v = 5
+
+vi :: Int
+vi = 6
+
+vii :: Int
+vii = 7

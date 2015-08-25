@@ -11,6 +11,7 @@ module Scale
 , locrianScale
 , majorScale
 , minorScale
+, chromaticScale
 ) where
 
 import Note
@@ -25,12 +26,14 @@ makeScale :: [Interval] -> Note -> Scale
 makeScale intervals root =
   root : map (resolveInterval root Ascending) intervals
 
---chromaticScale :: Note -> Scale
---chromaticScale root = makeScale
+chromaticScale :: Note -> Scale
+chromaticScale =
+  makeScale [1, 2, 3, 4, 5, 6, 7 , 8, 9, 10, 11]
 
 makeMode :: Mode -> Note -> Scale
 makeMode mode root =
-  take (length scale) $ drop (mode -1) $ cycle scale
+  --take (length scale) $ drop (mode -1) $ cycle scale
+  drop (mode -1) $ cycle scale
   where
     scale = makeScale
         [ majorSecond
