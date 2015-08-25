@@ -14,21 +14,24 @@ type Chord = [Note]
 
 makeTriad :: Scale -> Degree -> Chord
 makeTriad scale degree =
-  [ scale !! (0 + degree - 1)
-  , scale !! (2 + degree - 1)
-  , scale !! (4 + degree - 1)
+  [ scale !! (i   + degree')
+  , scale !! (iii + degree')
+  , scale !! (v   + degree')
   ]
+  where degree' = degree - 2
 
 makeTetrad :: Scale -> Degree -> Chord
 makeTetrad scale degree =
-  makeTriad scale degree ++ [scale !! (6 + degree - 1)]
+  makeTriad scale degree ++ [scale !! (vii + degree - 2)]
 
 makeChord :: Note -> [Interval] -> Chord
 makeChord root intervals =
   root : map (resolveInterval root Ascending) intervals
 
 majorTriad :: Note -> Chord
-majorTriad root = makeChord root [majorThird, perfectFifth]
+majorTriad root = makeTriad (majorScale root) i
 
 minorTriad :: Note -> Chord
-minorTriad root = makeChord root [minorThird, perfectFifth]
+minorTriad root = makeTriad (minorScale root) i
+
+--TODO: diminished chords
