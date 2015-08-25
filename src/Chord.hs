@@ -3,6 +3,7 @@ module Chord
 , makeTetrad
 , makeChord
 , majorTriad
+, minorTriad
 ) where
 
 import Note
@@ -27,4 +28,7 @@ makeChord root intervals =
   root : map (resolveInterval root Ascending) intervals
 
 majorTriad :: Note -> Chord
-majorTriad root = makeTriad (majorScale root) i
+majorTriad root = makeChord root [majorThird, perfectFifth]
+
+minorTriad :: Note -> Chord
+minorTriad root = makeChord root [minorThird, perfectFifth]
